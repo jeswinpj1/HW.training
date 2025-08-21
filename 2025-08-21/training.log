@@ -1,3 +1,7 @@
+
+mangoshell task 1
+...........................
+
 use companydb
 companydb> db.employes.insertOne({empid:100,name:"jeswin pj",department:"it",salary:"10000",isActive:true})
 
@@ -33,4 +37,51 @@ user@user-ASUS-TUF-Gaming-A15-FA506ICB-FA506ICB:~$ mongoimport --db=companyDB --
  db.employees.createIndex({ department: 1, salary: -1 })
 
 test> db.employees.getIndexes()
+
+
+mongocompass task 2
+..................................
+
+{ "department": "HR" }
+{ salary: { $gt: 50000 } }
+
+{ 
+  "isActive": true,
+  "department": { "$in": ["HR", "IT"] }
+}
+
+{ "department": "Sales" }
+
+
+[
+  { "$group": {
+      "_id": "$department",
+      "avgSalary": { "$avg": "$salary" },
+      "maxSalary": { "$max": "$salary" },
+      "minSalary": { "$min": "$salary" }
+  }}
+]
+
+
+[
+  { "$match": { "salary": { "$gt": 50000 } } },
+  { "$sort": { "salary": -1 } }
+]
+
+
+[
+  { "$project": {
+      "name": 1,
+      "salary": 1,
+      "department": 1,
+      "annualSalary": { "$multiply": [ "$salary", 12 ] }
+  }}
+]
+avg salary
+{
+  "_id": "Sales",
+  "avgSalary": 46800,
+  "maxSalary": 99000,
+  "minSalary": 25000
+}
 
