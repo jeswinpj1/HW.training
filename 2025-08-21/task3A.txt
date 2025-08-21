@@ -1,0 +1,36 @@
+use companydb
+companydb> db.employes.insertOne({empid:100,name:"jeswin pj",department:"it",salary:"10000",isActive:true})
+
+companydb> db.employees.insertMany([{empid:102,name:"andy",department:"account",salary:30000,isActive:false},{empid:103,name:"madie",department:"sales",salary:25000,isActive:true},{empid:104,name:"benny",department:"it",salary:29000,isActive:false}])
+
+companydb> db.employees.updateMany({department:"it"},{$mul:{salary:1.1}})
+
+companydb> db.employees.deleteMany({ isActive: false})
+
+companydb> db.employees.find()
+
+
+user@user-ASUS-TUF-Gaming-A15-FA506ICB-FA506ICB:~$ mongoexport --db=companydb --collection=employes --out=employes.json
+
+
+user@user-ASUS-TUF-Gaming-A15-FA506ICB-FA506ICB:~$ mongoexport --db=companydb --collection=employes --type=csv \
+  --fields=empid,name,department,salary,isActive \
+  --out=employes.csv
+
+user@user-ASUS-TUF-Gaming-A15-FA506ICB-FA506ICB:~$ mongodump --db=companyDB --out=/home/user/mongo_dumps
+
+test> use companydb
+switched to db companydb
+companydb> db.dropDatabase()
+{ ok: 1, dropped: 'companydb' }
+
+user@user-ASUS-TUF-Gaming-A15-FA506ICB-FA506ICB:~$ mongorestore --db=companyDB /home/user/mongo_dumps/companyDB
+
+user@user-ASUS-TUF-Gaming-A15-FA506ICB-FA506ICB:~$ mongoimport --db=companyDB --collection=importedEmployees --file=employees.json
+
+ db.employees.createIndex({ department: 1 })
+
+ db.employees.createIndex({ department: 1, salary: -1 })
+
+test> db.employees.getIndexes()
+
