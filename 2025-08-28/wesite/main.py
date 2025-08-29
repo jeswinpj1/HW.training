@@ -14,7 +14,6 @@ class QuickeralaParser:
             response.raise_for_status()
             return response.text
         except requests.RequestException as e:
-            print(f"[ERROR] Failed to fetch {url}: {e}")
             return None
         
     def parse_data(self, html):
@@ -44,11 +43,14 @@ class QuickeralaParser:
         with open(filename, "w", encoding="utf-8") as f:
             for item in self.results:
                 f.write(f"{item['title']} | {item['location']}\n")
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> a5149d93b673096b3edc2dc268b73b903c0137cd
     def start(self):
         main_html = self.fetch_html(self.start_url)
         if not main_html:
-            print("[ERROR] Could not fetch main page.")
             return
         self.save_raw_html(main_html, "raw.html")
         links = self.parse_data(main_html)
