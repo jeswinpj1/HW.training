@@ -35,6 +35,16 @@ class QuickeralaParser:
         }
         return data
 
+    def save_links_to_file(self, links, filename="links.txt"):
+        with open(filename, "w", encoding="utf-8") as f:
+            for link in links:
+                f.write(f"{link}\n")
+
+    def yield_lines_from_file(self, filename):
+        with open(filename, "r", encoding="utf-8") as f:
+            for line in f:
+                yield line.rstrip('\n')
+
     def save_raw_html(self, html, filename="raw.html"):
         with open(filename, "w", encoding="utf-8") as f:
             f.write(html)
@@ -50,7 +60,8 @@ class QuickeralaParser:
             return
         self.save_raw_html(main_html, "raw.html")
         links = self.parse_data(main_html)
-        for idx, url in enumerate(links[:20], start=1):  
+        self.save_links_to_file(links, "links.txt")
+        for url in self.yield_lines_from_file("links.txt"):
             html = self.fetch_html(url)
             if html:
                 data = self.parse_item(html)
