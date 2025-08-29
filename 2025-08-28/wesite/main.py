@@ -43,11 +43,7 @@ class QuickeralaParser:
         with open(filename, "w", encoding="utf-8") as f:
             for item in self.results:
                 f.write(f"{item['title']} | {item['location']}\n")
-<<<<<<< HEAD
 
-=======
-        
->>>>>>> a5149d93b673096b3edc2dc268b73b903c0137cd
     def start(self):
         main_html = self.fetch_html(self.start_url)
         if not main_html:
