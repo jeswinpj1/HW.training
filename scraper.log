@@ -1,0 +1,45 @@
+2025-08-29 17:30:42,874 INFO: Fetching: https://www.quickerala.com/thrissur/real-estate/real-estate-agents/sbct-5996-dt-13
+2025-08-29 17:30:43,281 INFO: Got response from https://www.quickerala.com/thrissur/real-estate/real-estate-agents/sbct-5996-dt-13
+2025-08-29 17:30:43,300 INFO: Saved raw HTML to raw.html
+2025-08-29 17:30:43,420 INFO: Extracted 13 links
+2025-08-29 17:30:43,422 INFO: Saved links to links.txt
+2025-08-29 17:30:43,422 INFO: Fetching: https://www.quickerala.com/thrissur/kolazhy/bharat-real-estate-construction/295481
+2025-08-29 17:30:43,717 INFO: Got response from https://www.quickerala.com/thrissur/kolazhy/bharat-real-estate-construction/295481
+2025-08-29 17:30:43,772 INFO: Title: Bharat real estate&construction | Location: pottore, kolazhy, Kolazhy, Thrissur - 680581
+2025-08-29 17:30:43,772 INFO: Fetching: https://www.quickerala.com/thrissur/aloor/share-brokers/193584
+2025-08-29 17:30:44,153 INFO: Got response from https://www.quickerala.com/thrissur/aloor/share-brokers/193584
+2025-08-29 17:30:44,186 INFO: Title: Share Brokers | Location: Aloor, Thrissur, Aloor, Thrissur - 680683
+2025-08-29 17:30:44,186 INFO: Fetching: https://www.quickerala.com/thrissur/kuruppam-road/sree-balaji-associates/284521
+2025-08-29 17:30:44,382 INFO: Got response from https://www.quickerala.com/thrissur/kuruppam-road/sree-balaji-associates/284521
+2025-08-29 17:30:44,412 INFO: Title: Sree balaji Associates | Location: Room No 32, 1st Floor, Bellmouth Building, Kuruppam Road, Thrissur, Kuruppam Road, Thrissur - 680003
+2025-08-29 17:30:44,412 INFO: Fetching: https://www.quickerala.com/thrissur/kunnathangadi/western-loans-real-estate-p-ltd/283307
+2025-08-29 17:30:44,568 INFO: Got response from https://www.quickerala.com/thrissur/kunnathangadi/western-loans-real-estate-p-ltd/283307
+2025-08-29 17:30:44,607 INFO: Title: Western Loans Real Estate (p) Ltd | Location: Main Road, Kunnathunad, Thrissur, Kunnathangadi, Thrissur - 680612
+2025-08-29 17:30:44,607 INFO: Fetching: https://www.quickerala.com/thrissur/chalakudy/master-real-estate-developers/266677
+2025-08-29 17:30:44,715 INFO: Got response from https://www.quickerala.com/thrissur/chalakudy/master-real-estate-developers/266677
+2025-08-29 17:30:44,745 INFO: Title: Master Real Estate & Developers | Location: Chalakkudy, Thrissur, Chalakudy, Thrissur
+2025-08-29 17:30:44,745 INFO: Fetching: https://www.quickerala.com/thrissur/guruvayur/guruvayur-lands/265047
+2025-08-29 17:30:44,945 INFO: Got response from https://www.quickerala.com/thrissur/guruvayur/guruvayur-lands/265047
+2025-08-29 17:30:44,982 INFO: Title: Guruvayur Lands | Location: North Nada, Guruvayoor, Thrissur, Guruvayur, Thrissur - 680101
+2025-08-29 17:30:44,982 INFO: Fetching: https://www.quickerala.com/thrissur/guruvayur/winway-associates/263262
+2025-08-29 17:30:45,121 INFO: Got response from https://www.quickerala.com/thrissur/guruvayur/winway-associates/263262
+2025-08-29 17:30:45,153 INFO: Title: Winway Associates | Location: South Nada, Guruvayur, Thrissur, Guruvayur, Thrissur - 680101
+2025-08-29 17:30:45,154 INFO: Fetching: https://www.quickerala.com/thrissur/irinjalakuda/thomas-chathely/250322
+2025-08-29 17:30:45,296 INFO: Got response from https://www.quickerala.com/thrissur/irinjalakuda/thomas-chathely/250322
+2025-08-29 17:30:45,365 INFO: Title: THOMAS CHATHELY | Location: IRINJALAKUDA, Irinjalakuda, Thrissur - 680125
+2025-08-29 17:30:45,365 INFO: Fetching: https://www.quickerala.com/thrissur/punkunnam/thrissur-real-estate/441085
+2025-08-29 17:30:45,542 INFO: Got response from https://www.quickerala.com/thrissur/punkunnam/thrissur-real-estate/441085
+2025-08-29 17:30:45,577 INFO: Title: Thrissur Real Estate | Location: Thrissur Real Estate, Sreelaxmi complex, Guruvayur - Puzhakkal Main Road, Punkunnam, Punkunnam, Thrissur - 680002
+2025-08-29 17:30:45,577 INFO: Fetching: https://www.quickerala.com/thrissur/thrissur/forus-builders-thrissur-guruvayur-builders-in-thrissur/433240
+2025-08-29 17:30:45,727 INFO: Got response from https://www.quickerala.com/thrissur/thrissur/forus-builders-thrissur-guruvayur-builders-in-thrissur/433240
+2025-08-29 17:30:45,758 INFO: Title: Forus Builders,Thrissur,Guruvayur: Builders in Thrissur ... | Location: Santhi Road, Chembukkavu, Thrissur-20, Kerala, Forus Town House, Santhi Road, Chembukkavu, Thrissur, Kerala, thrissur, Thrissur, Thrissur - 680001
+2025-08-29 17:30:45,759 INFO: Fetching: https://www.quickerala.com/thrissur/koorkenchery/haritha-homes/421653
+2025-08-29 17:30:45,883 INFO: Got response from https://www.quickerala.com/thrissur/koorkenchery/haritha-homes/421653
+2025-08-29 17:30:45,915 INFO: Title: Haritha Homes | Location: Haritha Campus, Vadookara, Koorkenchery, Thrissur, Kerala, India, Koorkenchery, Thrissur, Kerala, Koorkenchery, Thrissur - 680007
+2025-08-29 17:30:45,915 INFO: Fetching: https://www.quickerala.com/thrissur/guruvayur/info-properties/421212
+2025-08-29 17:30:46,036 INFO: Got response from https://www.quickerala.com/thrissur/guruvayur/info-properties/421212
+2025-08-29 17:30:46,072 INFO: Title: INFO PROPERTIES | Location: Amrutham Appartments, EAST Nada, Guruvayur, Thrissur - 680101
+2025-08-29 17:30:46,072 INFO: Fetching: https://www.quickerala.com/thrissur/guruvayur/landlord/217252
+2025-08-29 17:30:46,220 INFO: Got response from https://www.quickerala.com/thrissur/guruvayur/landlord/217252
+2025-08-29 17:30:46,252 INFO: Title: Landlord | Location: East nada Guruvayoor, Guruvayoor, Guruvayur, Thrissur - 680101
+2025-08-29 17:30:46,252 INFO: Saved cleaned data to cleaned_data.txt
