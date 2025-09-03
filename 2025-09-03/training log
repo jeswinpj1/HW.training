@@ -1,0 +1,10 @@
+Extracted small details from a website providing JSON data by using XPath to locate the JSON in HTML, parsing it, and retrieving required fields.
+Assigned new xpath training task 
+Created scraping flows for PLP and PDP pages to collect product details. Extracted product lists from PLP and retrieved detailed attributes from PDP for structured data collection.
+lunch break
+"Collected product URLs from PLP (Product Listing Page).
+Navigated to each PDP (Product Detail Page) using extracted URLs.
+Scraped detailed attributes (price, description, size, availability, etc.).
+Stored combined data (PLP + PDP) in structured format (CSV/JSON)."
+onnam celebration  meeting 
+completing task
