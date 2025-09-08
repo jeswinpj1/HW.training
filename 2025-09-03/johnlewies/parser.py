@@ -27,8 +27,6 @@ def parse_product(file_path):
         "features": [],
         "images": []
     }
-
-    # --- Extract JSON-LD data ---
     scripts = tree.xpath('//script[@type="application/ld+json"]/text()')
     for script in scripts:
         try:
@@ -45,27 +43,17 @@ def parse_product(file_path):
                     product["product_description"] = data["description"]
         except:
             continue
-
-    # --- Breadcrumbs for category ---
     categories = tree.xpath('//nav[@data-testid="breadcrumbs"]//a/text()')
     product["category"] = " > ".join([c.strip() for c in categories if c.strip()])
-
-    # --- Price (extra check from DOM) ---
     prices = tree.xpath('//span[contains(@class,"price")]/text()')
     if prices:
         product["selling_price"] = prices[0].strip()
         product["regular_price"] = prices[-1].strip()
-
-    # --- Promotion ---
     promo = tree.xpath('//span[contains(@class,"promo")]/text()')
     if promo:
         product["promotion_description"] = promo[0].strip()
-
-    # --- Features ---
     features = tree.xpath('//ul[contains(@class,"features")]//li/text()')
     product["features"] = [f.strip() for f in features if f.strip()]
-
-    # --- Material / Style / Care ---
     material = tree.xpath('//li[contains(text(),"Composition")]/text()')
     if material:
         product["material_composition"] = material[0].strip()
@@ -77,8 +65,6 @@ def parse_product(file_path):
     care = tree.xpath('//li[contains(text(),"Care")]/text()')
     if care:
         product["care_instructions"] = care[0].strip()
-
-    # --- Rating ---
     rating = tree.xpath('//span[contains(@class,"average-rating")]/text()')
     if rating:
         product["rating"] = rating[0].strip()
@@ -86,22 +72,16 @@ def parse_product(file_path):
     reviews = tree.xpath('//span[contains(@class,"review-count")]/text()')
     if reviews:
         product["reviews"] = reviews[0].strip()
-
-    # --- Images ---
     images = tree.xpath('//img[contains(@class,"media")]/@src | //img[contains(@class,"media")]/@data-src | //img/@srcset')
     product["images"] = list(set(images))
 
     return product
 if __name__ == "__main__":
-    file_path = "plp.html"   # your saved product detail HTML
+    file_path = "plp.html"   
     data = parse_product(file_path)
-
-    # Print in terminal
     print("\n=== Product Details ===")
     for key, value in data.items():
         print(f"{key}: {value}")
-
-    # Save into JSON file
     with open("product.json", "w", encoding="utf-8") as f:
         json.dump(data, f, indent=4, ensure_ascii=False)
 
