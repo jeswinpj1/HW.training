@@ -13,14 +13,14 @@ class JohnLewisSpider(scrapy.Spider):
     allowed_domains = ["johnlewis.com"]
     start_urls = ["https://www.johnlewis.com/"]
 
-    base_url = "https://www.johnlewis.com/"   # define this to avoid NameError
-    ids = ["some-id-1", "some-id-2"]          # placeholder, define your real IDs
+    base_url = "https://www.johnlewis.com/"  
+    ids = ["some-id-1", "some-id-2"]          
 
     def start_requests(self):
         for url in self.start_urls:
             yield scrapy.Request(
                 url,
-                callback=self.parse,   #changed from parse_home to parse
+                callback=self.parse,   
                 meta={"proxy": PROXY, "handle_httpstatus_all": True}
             )
 
@@ -39,8 +39,6 @@ class JohnLewisSpider(scrapy.Spider):
             )
     def parse_category(self, response):
         category_url = response.meta["category_url"]
-
-    # instead of looping over ids, grab all subcategory links directly
         sub_links = response.xpath("//span[@class='card-item-ImageCardItem_ctaBlock--ff1e1']/a/@href").getall()
 
         for sub_link in sub_links:
