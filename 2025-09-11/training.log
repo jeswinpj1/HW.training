@@ -1,0 +1,14 @@
+
+learing about random ftplib dropbox boto3 js2py
+
+Assigned a new task to write Python code using regex for data filtering and successfully pushed 
+the processed results into MongoDB using pymongo.
+
+Developed a web crawler utilizing regex for data extraction from target webpages and integrated t
+he results into MongoDB using pymongo.
+
+lunch 
+
+Developed a parser using regex; pending next step to export data into JSON and CSV formats, 
+including JSON Lines, JSON Array, standard CSV, and pipe-separated CSV. Also working on converting 
+between different data formats as required.
