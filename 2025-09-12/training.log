@@ -1,0 +1,17 @@
+[INFO] Time taken for this URL: 0.23s
+[DONE] Saved 200 listings to olx_listings.json & MongoDB
+[INFO] Total time: 331.64s
+[INFO] Current memory usage: 0.42 MB; Peak: 0.46 MB
+
+"Studied the parser logic in my code to understand how it processes input and handles errors.
+Focused on improving readability, debugging issues, and planning test coverage for edge cases."
+Assigned a new task and began reviewing the requirements and scope.Planned initial steps, identified 
+key objectives, and gathered necessary resources to start.
+
+Explored learing web scraping techniques using Selenium, Playwright, and cURL to extract dynamic and 
+static web content.Compared their performance, handling of JavaScript, and ease of automation for data collection tasks.
+
+lunch time 
+
+Built web crawlers and parsers using Scrapy, Selenium, and Playwright to extract data from websites.Gained
+ deeper understanding of each tool’s strengths in handling dynamic content, navigation, and parsing.
