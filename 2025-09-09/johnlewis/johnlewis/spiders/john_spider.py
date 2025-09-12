@@ -1,3 +1,6 @@
+
+
+
 import scrapy
 from urllib.parse import urljoin
 
@@ -65,4 +68,5 @@ class JohnLewisSpider(scrapy.Spider):
             "products": full_links,
         }
 
-   
+
+

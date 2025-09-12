@@ -1,3 +1,4 @@
+
 import scrapy
 import json
 from urllib.parse import urljoin
@@ -9,9 +10,26 @@ PROXY = (
     f"max_cost=1.session_number=222:{API_KEY}@proxy-server.scraperapi.com:8001"
 )
 
+
 class JohnLewisProductSpider(scrapy.Spider):
     name = "john_products"
     allowed_domains = ["johnlewis.com"]
+
+    def clean_field(self, value, join=False):
+      
+        if not value:
+            return ""
+
+        if isinstance(value, list):
+            cleaned = [v.strip() for v in value if v and v.strip()]
+            if join:
+                return " ".join(cleaned) if cleaned else ""
+            return ", ".join(cleaned) if cleaned else ""
+
+        if isinstance(value, str):
+            return value.strip()
+
+        return ""
 
     def start_requests(self):
         with open("output.json", "r") as f:
@@ -31,26 +49,38 @@ class JohnLewisProductSpider(scrapy.Spider):
                         "subcategory": subcategory,
                     }
                 )
-           
+
     def parse_product(self, response):
-        category = response.meta.get("category", "")
-        subcategory = response.meta.get("subcategory", "")
-        title = response.xpath("//span[@data-testid='product:title:content']/text()").get(default="")
-        price = response.xpath("//span[@class='price_price__now__bNSvu']/text()").get(default="")
-        description = response.xpath("//div[@class='ProductDescriptionAccordion_descriptionContent__yd_yu']/p/text()").getall()
+        category = self.clean_field(response.meta.get("category", ""))
+        subcategory = self.clean_field(response.meta.get("subcategory", ""))
+
+        title = self.clean_field(
+            response.xpath("//span[@data-testid='product:title:content']/text()").get()
+        )
+        price = self.clean_field(
+            response.xpath("//span[@class='price_price__now__bNSvu']/text()").get()
+        )
+        description = self.clean_field(
+            response.xpath("//div[@class='ProductDescriptionAccordion_descriptionContent__yd_yu']/p/text()").getall(),
+            join=True
+        )
         unique_id = response.xpath("//p[@data-testid='description:code']/strong/text()").getall()
-        brand = response.xpath("//span[contains(@data-testid,'product:title')]/text()").get(default="")
-        color = response.xpath("//h3[@data-testid='colourlist:label']/span/text()").getall()
-        description = " ".join([d.strip() for d in description if d.strip()])
+            
+        brand = self.clean_field(
+            response.xpath("//span[contains(@data-testid,'product:title')]/text()").get()
+        )
+        color = self.clean_field(
+            response.xpath("//h3[@data-testid='colourlist:label']/span/text()").getall()
+        )
 
         yield {
-            "category": category or "",
-            "subcategory": subcategory or "",
+            "category": category,
+            "subcategory": subcategory,
             "url": response.url or "",
-            "title": title or "",
-            "price": price or "",
-            "description": description or "",
-            "unique_id": unique_id or "",
-            "brand": brand or "",
-            "color": color if color else "",
+            "title": title,
+            "price": price,
+            "description": description,
+            "unique_id": unique_id,
+            "brand": brand,
+            "color": color,
         }
