@@ -1,0 +1,6 @@
+requests
+pymongo
+lxml
+Pillow
+selenium
+undetected-chromedriver
