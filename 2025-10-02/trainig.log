@@ -1,0 +1,10 @@
+A structured log for students to record daily lessons, homework, and progress. Supports better organization, self-reflection,
+ and academic tracking.
+A new development task has been assigned to implement or enhance a specific feature or fix issues. Ensure timely delivery with proper testing, 
+documentation, and version control practices
+Task involves building a crawler to automatically browse and extract data from websites. Focus on efficient crawling, data parsing, and respecting 
+robots.txt and rate limits.
+luch 
+Execute the crawler to extract all accessible URLs from the target website. Ensure accurate link parsing, handle pagination
+Developed a parser to process scraped data and currently debugging identified errors. Focus on accurate data extraction, format consistency,
+ and robust error handling.
