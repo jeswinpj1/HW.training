@@ -1,0 +1,4 @@
+2025-10-10 12:49:41,746 - ERROR - URL: https://shop.billa.at/produkte/ja-natuerlich-rucola-00435519 | Status: 503 | Title: None
+2025-10-10 12:50:28,111 - ERROR - URL: https://shop.billa.at/produkte/ja-natuerlich-snackkarotten-00514852 | Status: 503 | Title: None
+2025-10-10 12:57:08,882 - ERROR - URL: https://shop.billa.at/produkte/ja-natuerlich-grahamweckerl-00741522 | ERROR: HTTPSConnectionPool(host='shop.billa.at', port=443): Read timed out. (read timeout=10)
+2025-10-10 13:18:00,538 - ERROR - URL: https://shop.billa.at/produkte/milka-choco-cookies-00501158 | Status: 503 | Title: None

@@ -1,4 +1,3 @@
-# items.py
 from pymongo import MongoClient
 from mongoengine import DynamicDocument, StringField, connect
 from settings import MONGO_DB_NAME, MONGO_URI
