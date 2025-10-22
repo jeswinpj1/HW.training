@@ -8,7 +8,6 @@ logging.basicConfig(level=logging.INFO)
 mongo_client = MongoClient(MONGO_URI)
 col_enriched = mongo_client[MONGO_DB_NAME][MONGO_COLLECTION_ENRICHED_DATA]
 
-# Fields must match the 126 header format
 CSV_HEADERS = [
     "unique_id","competitor_name","store_name","store_addressline1","store_addressline2","store_suburb",
     "store_state","store_postcode","store_addressid","extraction_date","product_name","brand","brand_type",
@@ -31,46 +30,55 @@ CSV_HEADERS = [
     "suitable_for","standard_drinks","environmental","grape_variety","retail_limit"
 ]
 
-
 def clean_value(value):
-    """Cleans each value before writing."""
     if value is None:
         return ""
-
-    # Convert to string
     value = str(value)
-
-    # Remove HTML tags
     value = re.sub(r'<.*?>', ' ', value)
-
-    # Remove unwanted symbols (optional: keep basic punctuation)
     value = re.sub(r'[^\w\s\.,:/%-]', ' ', value)
-
-    # Convert boolean-like fields
     if value.strip().lower() == "true":
         return True
     if value.strip().lower() == "false":
         return False
-
-    # Remove extra whitespace and convert to lowercase
     return re.sub(r'\s+', ' ', value).strip().lower()
-
 
 class Export:
     def __init__(self, out_path=FILE_NAME_FULLDUMP):
         self.out_path = out_path
         self.col = col_enriched
 
+    def generate_product_unique_key(self, doc):
+        unique_id = doc.get("unique_id")
+        if unique_id:
+            return f"{unique_id}P"
+        return ""
+
+    def generate_netcontent(self, doc):
+        qty = doc.get("grammage_quantity")
+        unit = doc.get("grammage_unit")
+        if qty and unit:
+            return f"{qty} {unit}".strip()
+        return ""
+
     def start(self):
         with open(self.out_path, "w", encoding="utf-8", newline="") as f:
-            writer = csv.writer(f, delimiter=CSV_DELIMITER, quotechar=CSV_QUOTECHAR, quoting=csv.QUOTE_MINIMAL)
+            writer = csv.writer(f, delimiter=CSV_DELIMITER,
+                                quotechar=CSV_QUOTECHAR, quoting=csv.QUOTE_MINIMAL)
             writer.writerow(CSV_HEADERS)
 
             for doc in self.col.find({}):
+                # Auto-generate fields
+                doc["product_unique_key"] = self.generate_product_unique_key(doc)
+                doc["netcontent"] = self.generate_netcontent(doc)
+
+                # Force these fields to be empty in output
+                doc["store_addressid"] = ""
+                doc["file_name_1"] = ""
+
+                # Ordered row
                 row = [clean_value(doc.get(h, "")) for h in CSV_HEADERS]
                 writer.writerow(row)
                 logging.info("Wrote: %s (%s)", doc.get("product_name", "")[:50], doc.get("unique_id", ""))
-
 
 if __name__ == "__main__":
     Export().start()
