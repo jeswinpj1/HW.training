@@ -1,0 +1,7 @@
+https://www.lidl.co.uk/q/api/search?offset=12&fetchsize=12&locale=en_GB&assortment=GB&version=2.1.0&category.id=10068374
+https://www.lidl.co.uk/q/api/search?offset=12&fetchsize=12&locale=en_GB&assortment=GB&version=2.1.0&category.id=10068166
+https://www.lidl.co.uk/q/api/search?offset=12&fetchsize=12&locale=en_GB&assortment=GB&version=2.1.0&category.id=10068222
+https://www.lidl.co.uk/q/api/search?offset=12&fetchsize=12&locale=en_GB&assortment=GB&version=2.1.0&category.id=10068226
+https://www.lidl.co.uk/q/api/search?offset=12&fetchsize=12&locale=en_GB&assortment=GB&version=2.1.0&category.id=10068371
+https://www.lidl.co.uk/q/api/search?offset=12&fetchsize=12&locale=en_GB&assortment=GB&version=2.1.0&category.id=10068373
+https://www.lidl.co.uk/q/api/search?offset=12&fetchsize=12&locale=en_GB&assortment=GB&version=2.1.0&category.id=10068225
