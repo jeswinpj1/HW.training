@@ -1,8 +1,12 @@
-[INFO] Time taken for this URL: 0.23s
-[DONE] Saved 200 listings to olx_listings.json & MongoDB
-[INFO] Total time: 331.64s
-[INFO] Current memory usage: 0.42 MB; Peak: 0.46 MB
 
+...........................................................................
+Selenium
+ Saved 200 listings to olx_listings.json & MongoDB
+ Total time: 331.64s
+ Current memory usage: 0.42 MB; Peak: 0.46 MB
+............................................................................
+curl=[DONE] Saved 200 listings in 4629.9s | memory current 1.40 MB
+.............................................................................
 "Studied the parser logic in my code to understand how it processes input and handles errors.
 Focused on improving readability, debugging issues, and planning test coverage for edge cases."
 Assigned a new task and began reviewing the requirements and scope.Planned initial steps, identified 
