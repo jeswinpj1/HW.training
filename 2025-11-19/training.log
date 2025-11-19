@@ -1,0 +1,4 @@
+Identified and resolved multiple errors to improve stability and performance.
+luch
+Got stuck with parts of the crawler code during development. Identified the underlying errors and began working on fixes.
+Began implementing the parsing module. Got stuck on some code sections but analyzed and realized the root issues.
