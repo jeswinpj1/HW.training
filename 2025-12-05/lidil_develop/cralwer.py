@@ -3,26 +3,24 @@ import json
 import time
 import re
 import requests
-from settings import HEADERS as headers, MONGO_DB
+from settings import HEADERS as headers, MONGO_DB, MONGO_COLLECTION_CATEGORY, MONGO_COLLECTION_DATA
 from pymongo import MongoClient
 from datetime import datetime
-from lxml import html
 
 
 class Crawler:
     """Lidl API Product Crawler"""
 
     def __init__(self):
-        self.mongo = MongoClient("mongodb://localhost:27017/")[MONGO_DB]
-        self.cat_col = self.mongo["lidl_categories"]
-        self.prod_col = self.mongo["lidl_products"]
-
+        self.client = MongoClient('mongodb://localhost:27017/')
+        self.mongo = self.client[MONGO_DB]
+       
     def start(self):
         """Requesting Start url"""
         logging.info("Starting Lidl Crawl")
 
         # READ CATEGORY IDs FROM DB
-        for row in self.cat_col.find():
+        for row in list(self.mongo[MONGO_COLLECTION_CATEGORY].find()):
             cat_id = row["category_id"]
             logging.info(f"\nCrawling Category: {cat_id}")
 
@@ -39,26 +37,39 @@ class Crawler:
             while True:
                 logging.info(f"Fetching: {api_url}")
                 time.sleep(1)
-                
-                response = requests.get(api_url, headers=headers)
+
+                try:
+                    response = requests.get(api_url, headers=headers, timeout=15)
+                except requests.exceptions.ReadTimeout:
+                    logging.error(" Timeout — retrying in 3 seconds...")
+                    time.sleep(3)
+                    continue
+                except Exception as e:
+                    logging.error(f" Request error: {e}")
+                    break
+
+                # ---- RESPONSE HANDLING ----
                 if response.status_code == 200:
+                    # process response JSON
                     is_next = self.parse_item(response, meta)
+
                     if not is_next:
                         logging.info("Pagination completed")
                         break
-                    
-                    # pagination crawling
+
+                    # ---- PAGINATION UPDATE ----
                     offset += 12
-                    cat_id = meta['category_id']
                     api_url = (
                         "https://www.lidl.co.uk/q/api/search?"
                         f"category.id={cat_id}&offset={offset}&fetchsize=12&locale=en_GB&assortment=GB&version=2.1.0"
                     )
                     meta["offset"] = offset
+
                 else:
                     logging.error(f"Status {response.status_code}")
                     logging.info("No data or error... stopping pagination")
                     break
+
 
     def parse_item(self, response, meta):
         """item part"""
@@ -77,24 +88,6 @@ class Crawler:
                 badges = stock.get("badgeInfo", {}).get("badges", [])
                 
                 pdp_url = f"https://www.lidl.co.uk{grid.get('canonicalUrl', '')}"
-
-                # Extract material and discount from HTML
-                material = ""
-                dress_discount = ""
-                try:
-                    res = requests.get(pdp_url, headers=headers, timeout=10)
-                    if res.status_code == 200:
-                        tree = html.fromstring(res.text)
-
-                        materials = tree.xpath("//div[@class='info-content']//li/text()")
-                        if materials:
-                            material = ", ".join([m.strip() for m in materials if m.strip()])
-
-                        discount = tree.xpath("//span[contains(@class,'ods-price__box-content-text-el')]/text()")
-                        if discount:
-                            dress_discount = discount[0].strip()
-                except Exception:
-                    pass
 
                 # Extract prices
                 price = price if isinstance(price, dict) else {}
@@ -230,8 +223,7 @@ class Crawler:
                 item["grammage_quantity"] = grammage_quantity
                 item["grammage_unit"] = grammage_unit
                 item["competitor_name"] = "Lidl"
-                item["material"] = material
-                item["discount_text_full"] = dress_discount
+                
                 item["instock"] = instock
                 item["site_shown_uom"] = f"{grammage_quantity} {grammage_unit}".strip()
                 item["price_per_unit"] = price.get("basePrice", {}).get("text", "")
@@ -257,12 +249,14 @@ class Crawler:
                 item["extraction_date"] = "2025-12-12"
 
                 logging.info(item)
-                try:
-                    key = {"unique_id": item["unique_id"]}
-                    self.prod_col.update_one(key, {"$set": item}, upsert=True)
-                    logging.info(f"Saved: {item['product_name']}")
-                except:
-                    pass
+                # try:
+                key = {"unique_id": item["unique_id"]}
+                if not self.mongo[MONGO_COLLECTION_DATA].find_one(key):
+                    doc = {**key, **item}
+                    self.mongo[MONGO_COLLECTION_DATA].insert_one(doc)
+                    logging.info("Inserted new document")
+                else:
+                    logging.info("Duplicate found — skipping")
 
             # Check if there are more items to fetch
             if offset + 12 < total:
@@ -271,7 +265,7 @@ class Crawler:
 
     def close(self):
         """Close function for all module object closing"""
-        self.mongo.close()
+        self.client.close()
 
 
 if __name__ == "__main__":
