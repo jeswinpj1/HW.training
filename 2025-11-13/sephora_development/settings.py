@@ -2,18 +2,19 @@ import logging
 import time
 import urllib.parse
 from datetime import datetime
-import pytz
+# import pytz
 import calendar
 from pymongo import MongoClient
 
 # --- Date & Project Setup ---
-datetime_obj = datetime.now(pytz.timezone("Asia/Kolkata"))
-iteration = datetime_obj.strftime("%Y_%m_%d")
+# datetime_obj = datetime.now(pytz.timezone("Asia/Kolkata"))
+
+# iteration = datetime_obj.strftime("%Y_%m_%d")
 PROJECT_NAME = "sephora_sg"
 
 # --- MongoDB Collections (Dynamic Naming) ---
-MONGO_DB_NAME = f"{PROJECT_NAME}_{iteration}"
-
+# MONGO_DB_NAME = f"{PROJECT_NAME}_{iteration}"
+MONGO_DB_NAME = f"{PROJECT_NAME}2026-01-02"
 MONGO_COLLECTION_RESPONSE = f"{PROJECT_NAME}_url"           # Stores product URLs
 MONGO_COLLECTION_CATEGORY = f"{PROJECT_NAME}_category_url"  # Stores category URLs
 MONGO_COLLECTION_URL_FAILED = f"{PROJECT_NAME}_url_failed"
