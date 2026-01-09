@@ -1,5 +1,5 @@
 import logging
-import pytz
+# import pytz
 from datetime import datetime
 import calendar
 
@@ -18,22 +18,22 @@ logging.basicConfig(
 )
 
 # --- 3. Date & Iteration Variables ---
-datetime_obj = datetime.now(pytz.timezone("UTC"))
+# datetime_obj = datetime.now(pytz.timezone("UTC"))
 
-# Simple date strings
-ITERATION = datetime_obj.strftime("%Y_%m_%d")
-YEAR = datetime_obj.strftime("%Y")
-MONTH = datetime_obj.strftime("%m")
-DAY = datetime_obj.strftime("%d")
-MONTH_VALUE = calendar.month_abbr[int(MONTH)]
-WEEK = (int(DAY) - 1) // 7 + 1
+# # Simple date strings
+# ITERATION = datetime_obj.strftime("%Y_%m_%d")
+# YEAR = datetime_obj.strftime("%Y")
+# MONTH = datetime_obj.strftime("%m")
+# DAY = datetime_obj.strftime("%d")
+# MONTH_VALUE = calendar.month_abbr[int(MONTH)]
+# WEEK = (int(DAY) - 1) // 7 + 1
 
 FILE_NAME = f"lidl_2025_12_12_sample_data.csv"
 
 
 # --- 4. MongoDB and Collections ---
 MONGO_URI = "mongodb://mongotraining:a4892e52373844dc4862e6c468d11b6df7938e16@167.172.244.21:27017/?authSource=admin"
-MONGO_DB = f"{PROJECT_NAME}_{ITERATION}"
+MONGO_DB = f"{PROJECT_NAME}_sample"
 MONGO_COLLECTION_DATA = f"{PROJECT_NAME}11_data"
 MONGO_COLLECTION_DATA_FULL = f"{PROJECT_NAME}11_data_full"
 MONGO_COLLECTION_CATEGORY = f"{PROJECT_NAME}11_category_id"
