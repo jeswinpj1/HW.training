@@ -11,7 +11,7 @@ class CategoryCrawler:
     """Extract category IDs from Lidl website and store in MongoDB"""
 
     def __init__(self):
-        self.client = MongoClient('mongodb://localhost:27017/')
+        self.client = MongoClient('mongodb://mongotraining:a4892e52373844dc4862e6c468d11b6df7938e16@167.172.244.21:27017/?authSource=admin')
         self.mongo = self.client[MONGO_DB]
 
     def fetch_and_store_categories(self):
