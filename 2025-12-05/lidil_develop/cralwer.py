@@ -12,7 +12,7 @@ class Crawler:
     """Lidl API Product Crawler"""
 
     def __init__(self):
-        self.client = MongoClient('mongodb://localhost:27017/')
+        self.client = MongoClient('mongodb://mongotraining:a4892e52373844dc4862e6c468d11b6df7938e16@167.172.244.21:27017/?authSource=admin')
         self.mongo = self.client[MONGO_DB]
        
     def start(self):

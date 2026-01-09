@@ -32,13 +32,13 @@ FILE_NAME = f"lidl_2025_12_12_sample_data.csv"
 
 
 # --- 4. MongoDB and Collections ---
-MONGO_URI = "mongodb://localhost:27017/"
+MONGO_URI = "mongodb://mongotraining:a4892e52373844dc4862e6c468d11b6df7938e16@167.172.244.21:27017/?authSource=admin"
 MONGO_DB = f"{PROJECT_NAME}_{ITERATION}"
-MONGO_COLLECTION_DATA = f"{PROJECT_NAME}_data"
-MONGO_COLLECTION_DATA_FULL = f"{PROJECT_NAME}_data_full"
-MONGO_COLLECTION_CATEGORY = f"{PROJECT_NAME}_category_id"
-MONGO_COLLECTION_URL_FAILED = f"{PROJECT_NAME}_url_failed"
-MONGO_COLLECTION_URL = f"{PROJECT_NAME}_pdp_url" # For Product Detail Page URLs
+MONGO_COLLECTION_DATA = f"{PROJECT_NAME}11_data"
+MONGO_COLLECTION_DATA_FULL = f"{PROJECT_NAME}11_data_full"
+MONGO_COLLECTION_CATEGORY = f"{PROJECT_NAME}11_category_id"
+MONGO_COLLECTION_URL_FAILED = f"{PROJECT_NAME}11_url_failed"
+MONGO_COLLECTION_URL = f"{PROJECT_NAME}11_pdp_url" # For Product Detail Page URLs
 
 # --- 5. Queue and Proxy (Placeholders) ---
 QUEUE_NAME_URL = f"{PROJECT_NAME}_urls_queue"
