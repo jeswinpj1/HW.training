@@ -3,14 +3,14 @@ import time
 import requests
 from parsel import Selector
 from pymongo import MongoClient
-from settings import HEADERS, COOKIES, MONGO_URI, MONGO_DB_NAME, MONGO_COLLECTION_URLS
+from settings import HEADERS, COOKIES, MONGO_URI, MONGO_DB_NAME, MONGO_COLLECTION_URLS,BASE_URL
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s: %(message)s")
 
 class ClassicCarsCrawler:
     """Crawler to fetch classic car listing URLs and save to MongoDB."""
 
-    BASE_URL = "https://classiccars.com/listings/find/until-1990"
+    BASE_URL = BASE_URL
     MAX_PAGES = 600
 
     def __init__(self):

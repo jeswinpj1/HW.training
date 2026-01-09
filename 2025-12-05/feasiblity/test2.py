@@ -6,17 +6,16 @@ HEADERS = {
     "Referer": "https://www.lidl.co.uk/",
 }
 
-INPUT_FILE = "https://www.lidl.co.uk/q/api/search?offset=12&fetchsize=12&locale=en_GB&assortment=GB&version=2.1.0&category.id=10068374"
+INPUT_FILE = "https://www.lidl.co.uk/q/api/search?category.id=10071012&offset=0&fetchsize=12&locale=en_GB&assortment=GB&version=2.1.0"
 
 class Crawler:
     """Lidl API Product Crawler"""
 
     def start(self):
-        with open(INPUT_FILE, "r", encoding="utf-8") as file:
-            for url in map(str.strip, file):
-                if url:
-                    logging.info(f"Crawling URL: {url}")
-                    self.fetch_products(url)
+        url = INPUT_FILE  # It's a URL, not a file
+        logging.info(f"Crawling URL: {url}")
+        self.fetch_products(url)
+
 
     def fetch_products(self, base_url):
         offset, page_size = 0, 12
@@ -49,6 +48,15 @@ class Crawler:
             num = re.findall(r"[\d.]+", val)
             return float(num[0]) if num else None
         return None
+    def save_to_db(self, item):
+        """Append each product into a JSON file."""
+        try:
+            with open("lidl_products.json", "a", encoding="utf-8") as f:
+                json.dump(item, f, ensure_ascii=False)
+                f.write("\n")  # each product on new line (JSONL format)
+            logging.info(f"Saved: {item['unique_id']}")
+        except Exception as e:
+            logging.error(f"Failed to write JSON: {e}")
 
     def map_product(self, p):
         grid, meta = p.get("gridbox", {}).get("data", {}), p.get("gridbox", {}).get("meta", {})
@@ -148,9 +156,17 @@ class Crawler:
             "site_shown_uom": f"{grammage_quantity} {grammage_unit}".strip(),
             "price_per_unit": price.get("basePrice", {}).get("text", ""),
             "product_name": grid.get("title", ""),
-            "product_description": grid.get("keyfacts", {}).get("description", ""),
+            "product_description": grid.get("keyfacts", {}).get("description", "") or grid.get("keyfacts", {}).get("supplementalDescription", ""),
             **levels,
             "breadcrumb": breadcrumb_full,
+            "discount_text": discount_text,
+            "beardcrumb_level_1": names[0] if len(names) > 0 else "",
+            "beardcrumb_level_2": names[1] if len(names) > 1 else "",
+            "beardcrumb_level_3": names[2] if len(names) > 2 else "",
+            "beardcrumb_level_4": names[3] if len(names) > 3 else "",
+            "beardcrumb_level_5": names[4] if len(names) > 4 else "",
+            "beardcrumb_level_6": names[5] if len(names) > 5 else "",
+            "beardcrumb_level_7": names[6] if len(names) > 6 else "",
             "percentage_discount": percentage_discount,
             "regular_price": regular_price,
             "price_was": price_was,

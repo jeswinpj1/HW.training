@@ -266,3 +266,4 @@ print(f"Scraping completed. Total products fetched: {total_products}")
 #only beverages(tea,coffee) category
 #1. The API reports a total count of 3,576 products, but only 3,476 are extracted due to a pagination
 #  limit encountered at the 71st page when no next-page token is available.
+
